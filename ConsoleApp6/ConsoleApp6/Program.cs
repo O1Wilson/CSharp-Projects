@@ -5,22 +5,23 @@ class MoneyExpenseApp
 {
     static void Main()
     {
-        // A one-dimensional array of expense categories
-        string[] expenseCategories = { "Groceries", "Entertainment", "Utilities", "Transportation", "Dining Out" };
+        string[] expenseCategories = { "Groceries", "Entertainment", "Utilities" };
 
         // Array to store user input for expenses
         decimal[] expenses = new decimal[expenseCategories.Length];
 
         // Ask the user to input their expenses for each category
-        for (int i = 0; i < expenseCategories.Length; i++)
+        int i = 0; // Initializing i outside the loop
+        while (i <= expenseCategories.Length - 1)
         {
             Console.Write($"Enter the amount spent on {expenseCategories[i]}: $");
             expenses[i] = Convert.ToDecimal(Console.ReadLine());
+            i++; // Incrementing i inside the loop
         }
 
         // Display the entered expenses
         Console.WriteLine("\nEntered Expenses:");
-        for (int i = 0; i < expenseCategories.Length; i++)
+        for (i = 0; i <= expenseCategories.Length - 1; i++)
         {
             Console.WriteLine($"{expenseCategories[i]}: ${expenses[i]:F2}");
         }
