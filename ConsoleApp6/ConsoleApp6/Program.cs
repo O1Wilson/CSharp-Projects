@@ -21,9 +21,9 @@ class MoneyExpenseApp
 
         // Display the entered expenses
         Console.WriteLine("\nEntered Expenses:");
-        for (i = 0; i <= expenseCategories.Length - 1; i++)
+        for (int j = 0; j <= expenseCategories.Length - 1; j++)
         {
-            Console.WriteLine($"{expenseCategories[i]}: ${expenses[i]:F2}");
+            Console.WriteLine($"{expenseCategories[j]}: ${expenses[j]:F2}");
         }
 
         // Calculate and display the total expenses
@@ -34,6 +34,52 @@ class MoneyExpenseApp
         }
 
         Console.WriteLine($"\nTotal Expenses: ${totalExpenses:F2}");
+
+        List<string> stringsList = new List<string> { "Money", "Savings", "Investments", "Budgeting" };
+
+        Console.Write("Enter text to search for: ");
+        string searchText1 = Console.ReadLine();
+
+        bool found1 = false;
+
+        for (int k = 0; k < stringsList.Count; k++)
+        {
+            if (stringsList[k].Contains(searchText1))
+            {
+                Console.WriteLine($"Match found at index {k}");
+                found1 = true;
+                break; // Stop the loop once a match is found
+            }
+        }
+
+        if (!found1)
+        {
+            Console.WriteLine("Text not found in the list.");
+        }
+
+        List<string> mStringsList = new List<string> { "Money", "Savings", "Investments", "Budgeting", "Money" };
+
+        // Ask the user to select text to search for in the list
+        Console.Write("Enter text to search for: ");
+        string searchText2 = Console.ReadLine();
+
+        bool found2 = false;
+
+        // Loop to iterate through the list and display indices of matching text
+        Console.WriteLine("Indices of matching text:");
+        for (int l = 0; l < mStringsList.Count; l++)
+        {
+            if (mStringsList[l].Equals(searchText2))
+            {
+                Console.WriteLine($"Match found at index {l}");
+                found2 = true;
+            }
+        }
+
+        if (!found2)
+        {
+            Console.WriteLine("Text not found in the list.");
+        }
 
         // A list of strings with at least two identical strings
         List<string> duplicateStringsList = new List<string> { "Money", "Savings", "Investments", "Budgeting", "Money" };
