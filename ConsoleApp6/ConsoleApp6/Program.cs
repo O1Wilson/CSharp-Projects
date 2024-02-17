@@ -10,18 +10,19 @@ class MoneyExpenseApp
         // Array to store user input for expenses
         decimal[] expenses = new decimal[expenseCategories.Length];
 
-        // Ask the user to input their expenses for each category
-        int i = 0; // Initializing i outside the loop
-        while (i <= expenseCategories.Length - 1)
+        // Ask the user to input their expenses for all categories
+        Console.Write("Enter the amount spent for all categories: $");
+        decimal commonExpense = Convert.ToDecimal(Console.ReadLine());
+
+        // Set the common expense for all categories
+        for (int i = 0; i < expenses.Length; i++)
         {
-            Console.Write($"Enter the amount spent on {expenseCategories[i]}: $");
-            expenses[i] = Convert.ToDecimal(Console.ReadLine());
-            i++; // Incrementing i inside the loop
+            expenses[i] = commonExpense;
         }
 
         // Display the entered expenses
         Console.WriteLine("\nEntered Expenses:");
-        for (int j = 0; j <= expenseCategories.Length - 1; j++)
+        for (int j = 0; j < expenseCategories.Length; j++)
         {
             Console.WriteLine($"{expenseCategories[j]}: ${expenses[j]:F2}");
         }
