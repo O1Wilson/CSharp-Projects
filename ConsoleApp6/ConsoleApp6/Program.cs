@@ -6,18 +6,13 @@ class MoneyExpenseApp
     static void Main()
     {
         string[] expenseCategories = { "Groceries", "Entertainment", "Utilities" };
-
-        // Array to store user input for expenses
         decimal[] expenses = new decimal[expenseCategories.Length];
 
-        // Ask the user to input their expenses for all categories
-        Console.Write("Enter the amount spent for all categories: $");
-        decimal commonExpense = Convert.ToDecimal(Console.ReadLine());
-
-        // Set the common expense for all categories
-        for (int i = 0; i < expenses.Length; i++)
+        // Ask the user to input their expenses for each category
+        for (int i = 0; i < expenseCategories.Length; i++)
         {
-            expenses[i] = commonExpense;
+            Console.Write($"Enter the amount spent for {expenseCategories[i]}: $");
+            expenses[i] = Convert.ToDecimal(Console.ReadLine());
         }
 
         // Display the entered expenses
@@ -28,13 +23,37 @@ class MoneyExpenseApp
         }
 
         // Calculate and display the total expenses
-        decimal totalExpenses = 0;
-        foreach (decimal expense in expenses)
+        decimal totalExpenses = expenses.Sum(); // Using LINQ for summing up the array
+        Console.WriteLine($"\nTotal Expenses: ${totalExpenses:F2}");
+
+        static void GetExpenses(string[] expenseCategories, decimal[] expenses)
         {
-            totalExpenses += expense;
+            while (true)
+            {
+                for (int i = 0; i < expenseCategories.Length; i++)
+                {
+                    Console.Write($"Enter the amount spent for {expenseCategories[i]} (type 'exit' to finish): $");
+                    string userInput = Console.ReadLine();
+
+                    if (userInput.ToLower() == "exit")
+                    {
+                        // Exit the loop if the user types 'exit'
+                        return;
+                    }
+
+                    expenses[i] = Convert.ToDecimal(userInput);
+                }
+            }
         }
 
-        Console.WriteLine($"\nTotal Expenses: ${totalExpenses:F2}");
+        static void DisplayExpenses(string[] expenseCategories, decimal[] expenses)
+        {
+            Console.WriteLine("\nEntered Expenses:");
+            for (int j = 0; j < expenseCategories.Length; j++)
+            {
+                Console.WriteLine($"{expenseCategories[j]}: ${expenses[j]:F2}");
+            }
+        }
 
         List<string> stringsList = new List<string> { "Money", "Savings", "Investments", "Budgeting" };
 
