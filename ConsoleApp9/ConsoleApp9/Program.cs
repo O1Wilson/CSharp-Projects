@@ -27,7 +27,10 @@ class MethodOverloading
             return 0;
         }
     }
+}
 
+class Program
+{
     static void Main()
     {
         MethodOverloading mathOps = new MethodOverloading();
